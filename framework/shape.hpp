@@ -1,3 +1,6 @@
+#ifndef BUW_SHAPE_HPP
+#define 
+
 
 class Shape
 {
@@ -5,3 +8,4 @@ class Shape
 		virtual float area() const;
 		virtual float volume() const;
 };
+#endif
