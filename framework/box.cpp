@@ -26,7 +26,8 @@ glm::vec3 Box::getmax()
 
 double Box::area() const
 {
-	double a = 2*(((max_.x - min_.x)*(max_.y - min_.y))+((max_.x - min_.x)*(max_.z - min_.z))+((max_.y - min_.y)*(max_.z - min_.z)));
+	double a = 2*(((max_.x - min_.x)*(max_.y - min_.y))
+		+((max_.x - min_.x)*(max_.z - min_.z))+((max_.y - min_.y)*(max_.z - min_.z)));
 	return a;
 
 }
