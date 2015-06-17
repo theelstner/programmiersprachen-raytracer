@@ -1,6 +1,23 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
 #include "sphere.cpp"
+#include "box.cpp"
+
+TEST_CASE("aufgabe24", "[2_min_max_box]")
+{
+	Box b{{0.0, 3.0, 4.0}, {3.0, 5.0, 6.0}};
+	glm::vec3 minimum{0.0, 3.0, 4.0};
+	glm::vec3 maximum{3.0, 5.0, 6.0};
+	REQUIRE(b.getmin() == minimum);
+	REQUIRE(b.getmax() == maximum);
+}
+
+TEST_CASE("aufgabe23", "[2_area_volume_box]")
+{
+	Box b{};
+	REQUIRE(b.area() == Approx(6.0).epsilon(0.001));
+	REQUIRE(b.volume() == Approx(1.0).epsilon(0.001));
+}
 
 TEST_CASE("aufgabe22", "[2_center_radius_sphere]")
 {
