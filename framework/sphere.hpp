@@ -7,7 +7,7 @@ class Sphere : public Shape
 {
 public:
 	Sphere();
-	Sphere(glm::vec3 center, double radius);
+	Sphere(glm::vec3 const& center, double radius);
 	Sphere(Sphere const& x);
 	double getradius();
 	glm::vec3 getcenter();
