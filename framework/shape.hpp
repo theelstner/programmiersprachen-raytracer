@@ -1,5 +1,5 @@
 #ifndef BUW_SHAPE_HPP
-#define 
+#define BUW_SHAPE_HPP
 
 
 class Shape
