@@ -6,7 +6,7 @@ Sphere::Sphere() :
 center_{0.0, 0.0, 0.0},
 radius_{1.0} {}
 
-Sphere::Sphere(glm::vec3 center, double radius) :
+Sphere::Sphere(glm::vec3 const& center, double radius) :
 center_{center},
 radius_{radius} {}
 
