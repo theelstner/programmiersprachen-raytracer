@@ -9,6 +9,10 @@ public:
 	Sphere();
 	Sphere(glm::vec3 const& center, double radius);
 	Sphere(Sphere const& x);
+	Sphere(std::string const& name);
+	Sphere(Color const& color);
+	Sphere(std::string const& name, Color const& color);
+	Sphere(glm::vec3 const& center, double radius, std::string const& name, Color const& color);
 	double getradius();
 	glm::vec3 getcenter();
 	double area() const override;
