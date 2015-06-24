@@ -60,5 +60,20 @@ double Box::volume() const
 {
 	double v = (max_.x - min_.x)*(max_.y - min_.y)*(max_.z - min_.z);
 	return v;
-
 }
+
+std::ostream& Box::print(std::ostream& os) const
+{
+	os << "Name: " << name_ << "; " << "Color: " << color_ << "; " 
+	     << "Min: " << "(" << min_.x << ", " << min_.y << ", " 
+	     << min_.z << ")" << "; " << "Max: " << "(" << max_.x << ", " 
+	     << max_.y << ", "  << max_.z << ")" << "; ";
+	return os;
+}
+
+
+
+
+
+
+

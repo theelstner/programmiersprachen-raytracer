@@ -3,6 +3,13 @@
 #include "sphere.cpp"
 #include "box.cpp"
 
+TEST_CASE("aufgabe51", "[5_aufgabe]")
+{
+    Box bp(glm::vec3{0.0, 0.0, 1.0}, glm::vec3{2.0, 3.0, 4.0}, 
+		"Testbox", Color{0.0, 1.0, 1.0});
+    std::cout << bp << std::endl;
+}
+
 TEST_CASE("aufgabe5", "[5_aufgabe]")
 {
 	Sphere sp{glm::vec3{0.0, 0.0, 0.0}, {1.0}, "Testsphere", Color{0.0, 1.0, 1.0}};
