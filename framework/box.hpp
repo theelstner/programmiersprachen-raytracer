@@ -13,8 +13,8 @@ public:
 	Box(Color const& color);
 	Box(std::string const& name, Color const& color);
 	Box(glm::vec3 const& min, glm::vec3 const& max, std::string const& name, Color const& color);
-	glm::vec3 getmin();
-	glm::vec3 getmax();
+	glm::vec3 getmin() const;
+	glm::vec3 getmax() const;
 	double area() const override;
 	double volume() const override;
 private:

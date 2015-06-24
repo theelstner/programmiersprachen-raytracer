@@ -38,12 +38,12 @@ min_{min},
 max_{max} {}
 
 
-glm::vec3 Box::getmin()
+glm::vec3 Box::getmin() const
 {
 	return min_;
 }
 
-glm::vec3 Box::getmax()
+glm::vec3 Box::getmax() const
 {
 	return max_;
 }
