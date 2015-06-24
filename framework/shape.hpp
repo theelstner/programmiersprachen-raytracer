@@ -2,6 +2,7 @@
 #define BUW_SHAPE_HPP
 #include <string>
 #include "color.hpp"
+#include <iostream>
 
 
 class Shape
@@ -11,12 +12,14 @@ class Shape
 		Shape(Color const& color);
 		Shape(std::string const& name);
 		Shape(std::string const& name, Color const& color);
-		std::string getname();
-		Color getcolor();
+		std::string getname() const;
+		Color getcolor() const;
 		virtual double area() const = 0;
 		virtual double volume() const = 0;
+		virtual std::ostream& print(std::ostream& os) const;
 	protected:
 		std::string name_;
 		Color color_;
 };
+std::ostream& operator<<(std::ostream& os, Shape const& s);
 #endif

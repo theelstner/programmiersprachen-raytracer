@@ -20,12 +20,24 @@ name_{name},
 color_{color}
 {}
 
-std::string Shape::getname()
+std::string Shape::getname() const
 {
 	return name_;
 }
 
-Color Shape::getcolor()
+Color Shape::getcolor() const
 {
 	return color_;
+}
+
+std::ostream& Shape::print(std::ostream& os) const
+{
+	os << "Name: " << name_ << "; " << "Color: " << color_;
+	return os;
+}
+
+std::ostream& operator<<(std::ostream& os, Shape const& s)
+{
+	s.print(os);
+	return os;
 }
