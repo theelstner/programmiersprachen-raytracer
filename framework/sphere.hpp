@@ -13,10 +13,11 @@ public:
 	Sphere(Color const& color);
 	Sphere(std::string const& name, Color const& color);
 	Sphere(glm::vec3 const& center, double radius, std::string const& name, Color const& color);
-	double getradius();
-	glm::vec3 getcenter();
+	double getradius() const;
+	glm::vec3 getcenter() const;
 	double area() const override;
 	double volume() const override;
+	std::ostream& print(std::ostream& os) const override;
 private:
 	glm::vec3 center_;
 	double radius_;

@@ -37,12 +37,12 @@ Shape(name, color),
 center_{center},
 radius_{radius} {}
 
-double Sphere::getradius()
+double Sphere::getradius() const
 {
 	return radius_;
 }
 
-glm::vec3 Sphere::getcenter()
+glm::vec3 Sphere::getcenter() const
 {
 	return center_;
 }
@@ -58,3 +58,14 @@ double Sphere::volume() const
 	double v = (4.0/3.0)*M_PI*radius_*radius_*radius_;
 	return v;
 }
+
+std::ostream& Sphere::print(std::ostream& os) const
+{
+	os << "Name: " << name_ << "; " << "Color: " << color_ << "; " 
+	    << "Center: " << "(" << center_.x << ", " << center_.y << ", " 
+	     << center_.z << ")" << "; " << "Radius: " << radius_;
+	return os;
+}
+
+
+
