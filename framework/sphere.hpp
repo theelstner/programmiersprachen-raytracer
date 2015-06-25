@@ -2,6 +2,9 @@
 #define BUW_SPHERE_HPP
 #include "shape.hpp"
 #include <glm/vec3.hpp>
+#include <glm/glm.hpp>
+#include <glm/gtx/intersect.hpp>
+#include "ray.hpp"
 
 class Sphere : public Shape
 {
@@ -18,6 +21,7 @@ public:
 	double area() const override;
 	double volume() const override;
 	std::ostream& print(std::ostream& os) const override;
+	bool intersect(Ray & r) const;
 private:
 	glm::vec3 center_;
 	double radius_;

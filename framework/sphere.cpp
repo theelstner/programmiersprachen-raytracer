@@ -67,5 +67,12 @@ std::ostream& Sphere::print(std::ostream& os) const
 	return os;
 }
 
+bool Sphere::intersect(Ray & r) const
+{
+	auto v = glm::normalize(r.direction);
+	float distance(0.0);
+	auto result = glm::intersectRaySphere(r.origin, v, center_ , radius_, distance);
+	return result;
+}
 
 
