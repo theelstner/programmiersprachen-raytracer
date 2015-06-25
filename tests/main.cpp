@@ -5,6 +5,25 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/intersect.hpp>
 
+TEST_CASE("aufgabe8", "[aufgabe8]")
+{
+	std::cout << "hier gehts los" << std::endl;
+
+	Color red(255, 0, 0);
+	glm::vec3 position(0.0);
+
+	Sphere* s1 = new Sphere(position, 1.2, "sphere0", red);
+	Shape* s2 = new Sphere(position, 1.2, "sphere1", red);
+
+	s1->print(std::cout);
+	s2->print(std::cout);
+
+	delete s1;
+	delete s2;
+
+	std::cout << "hier endets" << std::endl;
+}
+
 TEST_CASE("aufgabe61_intersectSphere", "[intersectSphere]")
 {
 	Ray r1{{0.0, 0.0, 0.0}, {0.0, 1.0, 2.0}};

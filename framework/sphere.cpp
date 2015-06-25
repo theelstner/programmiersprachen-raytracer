@@ -5,37 +5,42 @@
 Sphere::Sphere() :
 Shape(),
 center_{0.0, 0.0, 0.0},
-radius_{1.0} {}
+radius_{1.0} {std::cout << "Sphere konstruiert" << std::endl;}
 
 Sphere::Sphere(glm::vec3 const& center, double radius) :
 Shape(),
 center_{center},
-radius_{radius} {}
+radius_{radius} {std::cout << "Sphere konstruiert" << std::endl;}
 
 Sphere::Sphere(Sphere const& x) :
 Shape(),
 center_{x.center_},
-radius_{x.radius_} {}
+radius_{x.radius_} {std::cout << "Sphere konstruiert" << std::endl;}
 
 Sphere::Sphere(std::string const& name) :
 Shape(name),
 center_{0.0, 0.0, 0.0},
-radius_{1.0} {}
+radius_{1.0} {std::cout << "Sphere konstruiert" << std::endl;}
 
 Sphere::Sphere(Color const& color) :
 Shape(color),
 center_{0.0, 0.0, 0.0},
-radius_{1.0} {}
+radius_{1.0} {std::cout << "Sphere konstruiert" << std::endl;}
 
 Sphere::Sphere(std::string const& name, Color const& color) :
 Shape(name, color),
 center_{0.0, 0.0, 0.0},
-radius_{1.0} {}
+radius_{1.0} {std::cout << "Sphere konstruiert" << std::endl;}
 
 Sphere::Sphere(glm::vec3 const& center, double radius, std::string const& name, Color const& color) :
 Shape(name, color),
 center_{center},
-radius_{radius} {}
+radius_{radius} {std::cout << "Sphere konstruiert" << std::endl;}
+
+Sphere::~Sphere()
+{
+	std::cout << "Sphere gelöscht" << std::endl;
+}
 
 double Sphere::getradius() const
 {
@@ -63,7 +68,7 @@ std::ostream& Sphere::print(std::ostream& os) const
 {
 	os << "Name: " << name_ << "; " << "Color: " << color_ << "; " 
 	    << "Center: " << "(" << center_.x << ", " << center_.y << ", " 
-	     << center_.z << ")" << "; " << "Radius: " << radius_;
+	     << center_.z << ")" << "; " << "Radius: " << radius_ << "\n";
 	return os;
 }
 
