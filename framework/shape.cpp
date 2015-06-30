@@ -2,23 +2,23 @@
 
 Shape::Shape() :
 name_{},
-color_{0.0, 0.0, 0.0}
-{std::cout << "Shape konstruiert" << std::endl;}
+material_{} {}
+//{std::cout << "Shape konstruiert" << std::endl;}
 
-Shape::Shape(Color const& color) :
+Shape::Shape(Material const& material) :
 name_{},
-color_{color}
-{std::cout << "Shape konstruiert" << std::endl;}
+material_{material} {}
+//{std::cout << "Shape konstruiert" << std::endl;}
 
 Shape::Shape(std::string const& name) :
 name_{name},
-color_{0.0, 0.0, 0.0}
-{std::cout << "Shape konstruiert" << std::endl;}
+material_{} {}
+//{std::cout << "Shape konstruiert" << std::endl;}
 
-Shape::Shape(std::string const& name, Color const& color) :
+Shape::Shape(std::string const& name, Material const& material) :
 name_{name},
-color_{color}
-{std::cout << "Shape konstruiert" << std::endl;}
+material_{material} {}
+//{std::cout << "Shape konstruiert" << std::endl;}
 
 Shape::~Shape()
 {
@@ -30,14 +30,14 @@ std::string Shape::getname() const
 	return name_;
 }
 
-Color Shape::getcolor() const
+Material const& Shape::getmaterial() const
 {
-	return color_;
+	return material_;
 }
 
 std::ostream& Shape::print(std::ostream& os) const
 {
-	os << "Name: " << name_ << "; " << "Color: " << color_;
+	os << "Name: " << name_ << "; " << "Material: " << material_;
 	return os;
 }
 

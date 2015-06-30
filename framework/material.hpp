@@ -8,12 +8,13 @@ class Material
 {
 public:
 	Material();
-	Material(std::string usrname, Color usrka, Color usrkd, Color usrks, float usrm);
-	std::string const& getname();
-	Color const& getka();
-	Color const& getkd();
-	Color const& getks();
-	float const getm();
+	Material(std::string const& usrname, Color const& usrka, Color const& usrkd, Color const& usrks, float const usrm);
+	std::string const& getname() const;
+	Color const& getka() const;
+	Color const& getkd() const;
+	Color const& getks() const;
+	float const getm() const;
+	Material const& getmaterial() const;
 
 
 private:

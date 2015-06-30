@@ -4,7 +4,24 @@
 #include "box.cpp"
 #include <glm/glm.hpp>
 #include <glm/gtx/intersect.hpp>
+#include <material.hpp>
+#include <sdfloader.hpp>
 
+TEST_CASE("materials")
+{
+	std::vector<Material> m = loadSDF("materials.sdf");
+	for (std::vector<Material>::iterator i=m.begin(); i!=m.end(); ++i) 
+	{
+      std::cout << *i << std::endl;
+    }
+}
+
+TEST_CASE("aufgabe7_4", "[aufgabe7_4]")
+{
+	Material material{"TestMaterial", {1.0, 0.0, 0.0}, {1.0, 1.0, 0.0}, {0.0, 0.0, 0.0}, {1.0}};
+    std::cout << material << std::endl;
+}
+/*
 TEST_CASE("aufgabe8", "[aufgabe8]")
 {
 	std::cout << "hier gehts los" << std::endl;
@@ -30,7 +47,7 @@ TEST_CASE("aufgabe61_intersectSphere", "[intersectSphere]")
 	Sphere s1{};
 	bool intersection = s1.intersect(r1);
 	REQUIRE(intersection == true);
-}
+}*/
 
 TEST_CASE("aufgabe6_intersectRaySphere", "[intersect]")
 {
@@ -53,13 +70,13 @@ TEST_CASE("aufgabe6_intersectRaySphere", "[intersect]")
 TEST_CASE("aufgabe51", "[5_aufgabe]")
 {
     Box bp(glm::vec3{0.0, 0.0, 1.0}, glm::vec3{2.0, 3.0, 4.0}, 
-		"Testbox", Color{0.0, 1.0, 1.0});
+		"Testbox", Material{});
     std::cout << bp << std::endl;
 }
 
 TEST_CASE("aufgabe5", "[5_aufgabe]")
 {
-	Sphere sp{glm::vec3{0.0, 0.0, 0.0}, {1.0}, "Testsphere", Color{0.0, 1.0, 1.0}};
+	Sphere sp{glm::vec3{0.0, 0.0, 0.0}, {1.0}, "Testsphere", Material{}};
 	std::cout << sp << std::endl;
 }
 
@@ -71,30 +88,23 @@ TEST_CASE("aufgabe5", "[5_aufgabe]")
 
 TEST_CASE("aufgabe31", "[3_konstruktor_box]")
 {
-	Box b1{glm::vec3{0.0, 0.0, 0.0}, glm::vec3{2.0, 2.0, 2.0}, "TestBox", Color{1.0, 0.0, 0.0}};
+	Box b1{glm::vec3{0.0, 0.0, 0.0}, glm::vec3{2.0, 2.0, 2.0}, "TestBox", Material{}};
 	glm::vec3 min{0.0, 0.0, 0.0};
 	glm::vec3 max{2.0, 2.0, 2.0};
-	Color color{1.0, 0.0, 0.0};
+	Material mate{};
 	std::string name = "TestBox";
 	REQUIRE(b1.getname() == name);
-	REQUIRE(b1.getcolor().r == color.r);
-	REQUIRE(b1.getcolor().g == color.g);
-	REQUIRE(b1.getcolor().b == color.b);
 	REQUIRE(b1.getmin() == min);
 	REQUIRE(b1.getmax() ==max);
 }
 
 TEST_CASE("aufgabe3", "[3_konstruktor_sphere]")
 {
-	Sphere s1{glm::vec3{0.0, 1.0, 0.0}, {2.0}, "TestSphere", Color{0.0, 1.0, 0.0}};
+	Sphere s1{glm::vec3{0.0, 1.0, 0.0}, {2.0}, "TestSphere", Material{}};
 	glm::vec3 center{0.0, 1.0, 0.0};
 	double radius = 2.0;
 	std::string name = "TestSphere";
-	Color color{0.0, 1.0, 0.0};
 	REQUIRE(s1.getname() == name);
-	REQUIRE(s1.getcolor().r == color.r);
-	REQUIRE(s1.getcolor().g == color.g);
-	REQUIRE(s1.getcolor().b == color.b);
 	REQUIRE(s1.getradius() == radius);
 	REQUIRE(s1.getcenter() == center);
 }

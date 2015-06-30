@@ -5,42 +5,42 @@
 Sphere::Sphere() :
 Shape(),
 center_{0.0, 0.0, 0.0},
-radius_{1.0} {std::cout << "Sphere konstruiert" << std::endl;}
+radius_{1.0} {} //{std::cout << "Sphere konstruiert" << std::endl;}
 
 Sphere::Sphere(glm::vec3 const& center, double radius) :
 Shape(),
 center_{center},
-radius_{radius} {std::cout << "Sphere konstruiert" << std::endl;}
+radius_{radius} {} //{std::cout << "Sphere konstruiert" << std::endl;}
 
 Sphere::Sphere(Sphere const& x) :
 Shape(),
 center_{x.center_},
-radius_{x.radius_} {std::cout << "Sphere konstruiert" << std::endl;}
+radius_{x.radius_} {} //{std::cout << "Sphere konstruiert" << std::endl;}
 
 Sphere::Sphere(std::string const& name) :
 Shape(name),
 center_{0.0, 0.0, 0.0},
-radius_{1.0} {std::cout << "Sphere konstruiert" << std::endl;}
+radius_{1.0} {} //{std::cout << "Sphere konstruiert" << std::endl;}
 
-Sphere::Sphere(Color const& color) :
-Shape(color),
+Sphere::Sphere(Material const& material) :
+Shape(material),
 center_{0.0, 0.0, 0.0},
-radius_{1.0} {std::cout << "Sphere konstruiert" << std::endl;}
+radius_{1.0} {} //{std::cout << "Sphere konstruiert" << std::endl;}
 
-Sphere::Sphere(std::string const& name, Color const& color) :
-Shape(name, color),
+Sphere::Sphere(std::string const& name, Material const& material) :
+Shape(name, material),
 center_{0.0, 0.0, 0.0},
-radius_{1.0} {std::cout << "Sphere konstruiert" << std::endl;}
+radius_{1.0} {} //{std::cout << "Sphere konstruiert" << std::endl;}
 
-Sphere::Sphere(glm::vec3 const& center, double radius, std::string const& name, Color const& color) :
-Shape(name, color),
+Sphere::Sphere(glm::vec3 const& center, double radius, std::string const& name, Material const& material) :
+Shape(name, material),
 center_{center},
-radius_{radius} {std::cout << "Sphere konstruiert" << std::endl;}
+radius_{radius} {} //{std::cout << "Sphere konstruiert" << std::endl;}
 
-Sphere::~Sphere()
+/*Sphere::~Sphere()
 {
 	std::cout << "Sphere gelöscht" << std::endl;
-}
+}*/
 
 double Sphere::getradius() const
 {

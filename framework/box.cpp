@@ -22,18 +22,18 @@ Shape(name),
 min_{0.0, 0.0, 0.0},
 max_{1.0, 1.0, 1.0} {}
 
-Box::Box(Color const& color) :
-Shape(color),
+Box::Box(Material const& material) :
+Shape(material),
 min_{0.0, 0.0, 0.0},
 max_{1.0, 1.0, 1.0} {}
 
-Box::Box(std::string const& name, Color const& color) :
-Shape(name, color),
+Box::Box(std::string const& name, Material const& material) :
+Shape(name, material),
 min_{0.0, 0.0, 0.0},
 max_{1.0, 1.0, 1.0} {}
 
-Box::Box(glm::vec3 const& min, glm::vec3 const& max, std::string const& name, Color const& color) :
-Shape(name, color),
+Box::Box(glm::vec3 const& min, glm::vec3 const& max, std::string const& name, Material const& material) :
+Shape(name, material),
 min_{min},
 max_{max} {}
 
@@ -64,7 +64,7 @@ double Box::volume() const
 
 std::ostream& Box::print(std::ostream& os) const
 {
-	os << "Name: " << getname() << "; " << "Color: " << getcolor() << "; " 
+	os << "Name: " << getname() << "; " << "\n" << "Material: " << getmaterial() << "; " 
 	    << "Min: " << "(" << min_.x << ", " << min_.y << ", " 
 	     << min_.z << ")" << "; " << "Max: " << "(" << max_.x << ", " 
 	     << max_.y << ", "  << max_.z << ")" << "; " << "\n";

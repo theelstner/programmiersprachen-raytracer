@@ -15,10 +15,10 @@ public:
 	Sphere(glm::vec3 const& center, double radius);
 	Sphere(Sphere const& x);
 	Sphere(std::string const& name);
-	Sphere(Color const& color);
-	Sphere(std::string const& name, Color const& color);
-	Sphere(glm::vec3 const& center, double radius, std::string const& name, Color const& color);
-	~Sphere();
+	Sphere(Material const& material);
+	Sphere(std::string const& name, Material const& material);
+	Sphere(glm::vec3 const& center, double radius, std::string const& name, Material const& material);
+	// ~Sphere();
 	double getradius() const;
 	glm::vec3 getcenter() const;
 	double area() const override;

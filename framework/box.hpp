@@ -10,10 +10,10 @@ public:
 	Box(glm::vec3 const& min, glm::vec3 const& max);
 	Box(Box const& b);
 	Box(std::string const& name);
-	Box(Color const& color);
-	Box(std::string const& name, Color const& color);
+	Box(Material const& material);
+	Box(std::string const& name, Material const& material);
 	Box(glm::vec3 const& min, glm::vec3 const& max, 
-		std::string const& name, Color const& color);
+		std::string const& name, Material const& material);
 	glm::vec3 getmin() const;
 	glm::vec3 getmax() const;
 	double area() const override;
