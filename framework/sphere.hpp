@@ -6,6 +6,8 @@
 #include <glm/gtx/intersect.hpp>
 #include "ray.hpp"
 
+//NUR von cpp auf Hpp verlinkung "" sonst <>
+
 class Sphere : public Shape
 {
 public:

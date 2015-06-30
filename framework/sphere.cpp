@@ -66,13 +66,13 @@ double Sphere::volume() const
 
 std::ostream& Sphere::print(std::ostream& os) const
 {
-	os << "Name: " << name_ << "; " << "Color: " << color_ << "; " 
-	    << "Center: " << "(" << center_.x << ", " << center_.y << ", " 
+	Shape::print(os); //Erweiterungsprinzip
+	os << "Center: " << "(" << center_.x << ", " << center_.y << ", " 
 	     << center_.z << ")" << "; " << "Radius: " << radius_ << "\n";
 	return os;
 }
 
-bool Sphere::intersect(Ray & r) const
+bool Sphere::intersect(Ray & r) const //const referenz bei r
 {
 	auto v = glm::normalize(r.direction);
 	float distance(0.0);

@@ -64,7 +64,7 @@ double Box::volume() const
 
 std::ostream& Box::print(std::ostream& os) const
 {
-	os << "Name: " << name_ << "; " << "Color: " << color_ << "; " 
+	os << "Name: " << getname() << "; " << "Color: " << getcolor() << "; " 
 	    << "Min: " << "(" << min_.x << ", " << min_.y << ", " 
 	     << min_.z << ")" << "; " << "Max: " << "(" << max_.x << ", " 
 	     << max_.y << ", "  << max_.z << ")" << "; " << "\n";
