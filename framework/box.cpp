@@ -71,7 +71,20 @@ std::ostream& Box::print(std::ostream& os) const
 	return os;
 }
 
-
+bool Box::intersect(Ray const& r, float& t)
+{
+	bool cut = false;
+	auto v = glm::normalize(r.direction);
+	t = (min_.x -r.origin.x)/r.direction.x;
+	glm::vec3 intersection = r.origin+(t*v);
+	if(intersection.y >= min_.y && intersection.y <= max_.y 
+		&& intersection.z >= min_.z && intersection.z <= max_.z)
+	{
+		cut = true;
+		return cut;
+	}
+	return cut;
+}
 
 
 

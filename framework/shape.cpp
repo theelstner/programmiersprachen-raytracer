@@ -25,7 +25,7 @@ Shape::~Shape()
 	std::cout << "Shape gelöscht" << std::endl; 
 }
 
-std::string Shape::getname() const
+std::string const& Shape::getname() const
 {
 	return name_;
 }

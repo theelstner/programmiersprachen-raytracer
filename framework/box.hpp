@@ -19,6 +19,7 @@ public:
 	double area() const override;
 	double volume() const override;
 	std::ostream& print(std::ostream& os) const override;
+	bool intersect(Ray const& ray, float& t) override;
 private:
 	glm::vec3 min_;
 	glm::vec3 max_;

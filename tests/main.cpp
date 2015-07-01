@@ -7,7 +7,16 @@
 #include <material.hpp>
 #include <sdfloader.hpp>
 
-TEST_CASE("materials")
+TEST_CASE("aufgabe7_3", "[aufgabe7_3]")
+{
+	float t = 1.0f;
+	Box b{};
+	Ray r{{0.0, 0.0, 0.0}, {1.0, 1.0, 1.0}};
+	bool test = b.intersect(r, t);
+	REQUIRE(test == true);
+}
+
+TEST_CASE("aufgabe 7_5", "[materials]")
 {
 	std::vector<Material> m = loadSDF("materials.sdf");
 	for (std::vector<Material>::iterator i=m.begin(); i!=m.end(); ++i) 
