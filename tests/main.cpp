@@ -11,18 +11,20 @@ TEST_CASE("aufgabe7_3", "[aufgabe7_3]")
 {
 	float t = 1.0f;
 	Box b{};
-	Ray r{{0.0, 0.0, 0.0}, {1.0, 1.0, 1.0}};
-	bool test = b.intersect(r, t);
+	//Ray r{{0.0, 0.0, 0.0}, {1.0, 1.0, 1.0}};
+	Ray r1{{2.0, 2.0, 2.0}, {-1.0, -1.0, -1.0}}; //tests x ebene
+	bool test = b.intersect(r1, t);
 	REQUIRE(test == true);
 }
 
 TEST_CASE("aufgabe 7_5", "[materials]")
 {
-	std::vector<Material> m = loadSDF("materials.sdf");
-	for (std::vector<Material>::iterator i=m.begin(); i!=m.end(); ++i) 
+	auto scene = loadSDF("materials.sdf");
+	for (auto i : scene->materials) 
 	{
-      std::cout << *i << std::endl;
+      std::cout << i << std::endl;
     }
+    delete scene;
 }
 
 TEST_CASE("aufgabe7_4", "[aufgabe7_4]")

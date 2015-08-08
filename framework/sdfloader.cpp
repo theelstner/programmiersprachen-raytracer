@@ -1,8 +1,8 @@
 #include "sdfloader.hpp"
 
-std::vector<Material> loadSDF(std::string const& file)
+Scene* loadSDF(std::string const& file)
 {
-	std::vector<Material> out;
+	Scene* out = new Scene;
 	std::ifstream sdf; //sdf datei, die geöffnet wird und in stream objekt gespeichert wird
 	std::vector<std::string> lines; //vec in dem einzelne zeilen d datei gespeichert
 	sdf.open(file);
@@ -26,9 +26,9 @@ std::vector<Material> loadSDF(std::string const& file)
 		std::stringstream stream(line);
 		std::string word;
 		std::vector<std::string> words;
-		while(stream.good())
+		while(stream.good()) //solange d stream offen ist und zeichen beinhaltet (fehler beim einlesen?steam zuende? lese oder schreibfehler?)
 		{
-			stream >> word;
+			stream >> word; // operator trennt nach leerzeichen
 			words.push_back(word);
 		}
 
@@ -44,7 +44,7 @@ std::vector<Material> loadSDF(std::string const& file)
 	    		Color kd{std::stof(words[6]), std::stof(words[7]), std::stof(words[8])};
 	    		Color ks{std::stof(words[9]), std::stof(words[10]), std::stof(words[11])};
 	    		float m = std::stof(words[12]);
-	    		out.push_back(Material{name, ka, kd, ks, m});
+	    		out->materials.push_back(Material{name, ka, kd, ks, m});
 	    	}
 	    }
 	}

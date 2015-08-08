@@ -39,7 +39,7 @@ float const Material::getm() const
 	return m;
 }
 
-std::ostream& operator<<(std::ostream& os, Material const& mat)
+std::ostream& operator<<(std::ostream& os, Material const& mat) // in die hpp
 {
 	os << "Name: " << mat.getname() << "\n" << "Color: " << mat.getka() << mat.getkd() << mat.getks() << "m: " << mat.getm();
 	return os;

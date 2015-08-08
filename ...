@@ -1,0 +1,8 @@
+Unstaged changes after reset:
+M	.DS_Store
+M	framework/box.cpp
+M	framework/material.cpp
+M	framework/sdfloader.cpp
+M	framework/sdfloader.hpp
+M	framework/shape.cpp
+M	tests/main.cpp
