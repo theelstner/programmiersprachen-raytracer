@@ -12,9 +12,21 @@ TEST_CASE("aufgabe7_3", "[aufgabe7_3]")
 	float t = 1.0f;
 	Box b{};
 	//Ray r{{0.0, 0.0, 0.0}, {1.0, 1.0, 1.0}};
-	Ray r1{{2.0, 2.0, 2.0}, {-1.0, -1.0, -1.0}}; //tests x ebene
-	bool test = b.intersect(r1, t);
-	REQUIRE(test == true);
+	Ray r0{{0.5, 0.5, 0.5}, {1.0, 0.0, 0.0}}; //tests x-plane from inside b
+	Ray r1{{0.5, 0.5, 0.5}, {0.0, 1.0, 0.0}}; //tests y-plane ..
+	Ray r2{{0.5, 0.5, 0.5}, {0.0, 0.0, 1.0}}; //tests z-plane ..
+	Ray r_outside{{2.0, 2.0, 2.0}, {-1.0, -1.0, -1.0}}; //tests from outside the box
+	Ray r_miss{{2.0, 2.0, 2.0}, {1.0, 0.0, 0.0}}; //test should return false
+	bool test0 = b.intersect(r0, t);
+	bool test1 = b.intersect(r1, t);
+	bool test2 = b.intersect(r2, t);
+	bool test3 = b.intersect(r_outside, t);
+	bool test4 = b.intersect(r_miss, t);
+	REQUIRE(test0 == true);
+	REQUIRE(test1 == true);
+	REQUIRE(test2 == true);
+	REQUIRE(test3 == true);
+	REQUIRE(test4 == false);
 }
 
 TEST_CASE("aufgabe 7_5", "[materials]")
