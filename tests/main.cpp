@@ -6,6 +6,16 @@
 #include <glm/gtx/intersect.hpp>
 #include <material.hpp>
 #include <sdfloader.hpp>
+#include <ppmwriter.hpp>
+#include <pixel.hpp>
+
+TEST_CASE("try to open a picture", "[ppm picture]")
+{
+	PpmWriter ppm{{100}, {50}, "ppmfile"};
+	Pixel pixel{{100}, {50}};
+	ppm.write(pixel);
+	ppm.save("ppmfile");
+}
 
 TEST_CASE("aufgabe7_3", "[aufgabe7_3]")
 {

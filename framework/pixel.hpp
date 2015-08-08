@@ -21,6 +21,7 @@ class Pixel
 public : // c'tor
 
   Pixel(unsigned int = 0, unsigned int = 0);
+  Pixel(unsigned int a, unsigned int b, Color c);
   void print(std::ostream&) const;
 
   unsigned int x;
