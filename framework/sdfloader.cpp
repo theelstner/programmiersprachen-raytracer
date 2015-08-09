@@ -65,6 +65,14 @@ Scene* loadSDF(std::string const& file)
 	    			out->box.push_back(Box{name, min, max, material});
 	    		}
 	    	}
+	    	if(words[1] == "light")
+	    	{
+	    		std::string name = words[2];
+	    		glm::vec3 position{std::stof(words[3]), std::stof(words[4]), std::stof(words[5])};
+	    		Color la{std::stof(words[6]), std::stof(words[7]), std::stof(words[8])};
+	    		Color ld{std::stof(words[9]), std::stof(words[10]), std::stof(words[11])};
+	    		out->lights.push_back(Light{name, position, la, ld});
+	    	}
 	    }
 	}
 	return out;
