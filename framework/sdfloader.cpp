@@ -46,6 +46,17 @@ Scene* loadSDF(std::string const& file)
 	    		float m = std::stof(words[12]);
 	    		out->materials.push_back(Material{name, ka, kd, ks, m});
 	    	}
+	    	if(words[1] == "shape")
+	    	{
+	    		if(words[2] == "sphere")
+	    		{
+	    			std::string name = words[3];
+	    			glm::vec3 center{std::stof(words[4]), std::stof(words[5]), std::stof(words[6])};
+	    			double radius = std::stof(words[7]);
+	    			Material mat_name = words[8]; // ATTENTION: Material{usrname} = black!
+	    			out->sphere.push_back(Sphere{name, center, radius, mat_name});
+	    		}
+	    	}
 	    }
 	}
 	return out;
