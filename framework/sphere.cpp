@@ -37,6 +37,11 @@ Shape(name, material),
 center_{center},
 radius_{radius} {} //{std::cout << "Sphere konstruiert" << std::endl;}
 
+Sphere::Sphere(std::string const& name, glm::vec3 const& center, double radius, Material const& material) :
+Shape(name, material),
+center_{center},
+radius_{radius} {}
+
 /*Sphere::~Sphere()
 {
 	std::cout << "Sphere gelöscht" << std::endl;

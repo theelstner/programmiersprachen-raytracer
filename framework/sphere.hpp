@@ -18,6 +18,7 @@ public:
 	Sphere(Material const& material);
 	Sphere(std::string const& name, Material const& material);
 	Sphere(glm::vec3 const& center, double radius, std::string const& name, Material const& material);
+	Sphere(std::string const& name, glm::vec3 const& center, double radius, Material const& material); //added for sdf loade
 	// ~Sphere();
 	double getradius() const;
 	glm::vec3 getcenter() const;
