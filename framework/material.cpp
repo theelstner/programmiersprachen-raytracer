@@ -7,6 +7,13 @@ kd{0, 0, 0},
 ks{0, 0, 0},
 m{0} {} 
 
+Material::Material(std::string const& usrname) :
+name{usrname},
+ka{0, 0, 0},
+kd{0, 0, 0},
+ks{0, 0, 0},
+m{0} {}
+
 Material::Material(std::string const& usrname, Color const& usrka, Color const& usrkd, Color const& usrks, float const usrm) :
 name{usrname},
 ka{usrka},

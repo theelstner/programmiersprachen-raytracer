@@ -8,6 +8,7 @@ class Material
 {
 public:
 	Material();
+	Material(std::string const& usrname);
 	Material(std::string const& usrname, Color const& usrka, Color const& usrkd, Color const& usrks, float const usrm);
 	std::string const& getname() const;
 	Color const& getka() const;
