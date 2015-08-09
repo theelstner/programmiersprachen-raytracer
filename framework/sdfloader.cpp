@@ -73,6 +73,19 @@ Scene* loadSDF(std::string const& file)
 	    		Color ld{std::stof(words[9]), std::stof(words[10]), std::stof(words[11])};
 	    		out->lights.push_back(Light{name, position, la, ld});
 	    	}
+	    	if(words[1] == "camera")
+	    	{
+	    		std::string name = words[2];
+	    		double fov_x = std::stof(words[3]);
+	    		out->camera = Camera{name, fov_x};
+	    	}
+	    }
+
+	    if(words[0] == "camera")
+	    {
+	    	std::string name = words[2];
+	    	double fov_x = std::stof(words[3]);
+	    	out->camera = Camera{name, fov_x};
 	    }
 	}
 	return out;

@@ -6,7 +6,7 @@
 #include <sphere.hpp>
 #include <box.hpp>
 #include <light.hpp>
-//#include <camera.hpp>
+#include <camera.hpp>
 
 struct Scene
 {
@@ -14,7 +14,7 @@ struct Scene
 	std::vector<Light> lights;
 	std::vector<Sphere> sphere;
 	std::vector<Box> box;
-	//Camera camera;
+	Camera camera;
 
 	//vector shape!!
 };
