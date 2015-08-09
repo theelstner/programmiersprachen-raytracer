@@ -53,8 +53,16 @@ Scene* loadSDF(std::string const& file)
 	    			std::string name = words[3];
 	    			glm::vec3 center{std::stof(words[4]), std::stof(words[5]), std::stof(words[6])};
 	    			double radius = std::stof(words[7]);
-	    			Material mat_name = words[8]; // ATTENTION: Material{usrname} = black!
-	    			out->sphere.push_back(Sphere{name, center, radius, mat_name});
+	    			Material material{words[8]}; // ATTENTION: Material{usrname} = black!
+	    			out->sphere.push_back(Sphere{name, center, radius, material});
+	    		}
+	    		if(words[2] == "box")
+	    		{
+	    			std::string name = words[3];
+	    			glm::vec3 min{std::stof(words[4]), std::stof(words[5]), std::stof(words[6])};
+	    			glm::vec3 max{std::stof(words[7]), std::stof(words[8]), std::stof(words[9])};
+	    			Material material{words[10]}; //Attention: Material material{usrname} = black!
+	    			out->box.push_back(Box{name, min, max, material});
 	    		}
 	    	}
 	    }
