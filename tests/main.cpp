@@ -8,13 +8,19 @@
 #include <sdfloader.hpp>
 #include <ppmwriter.hpp>
 #include <pixel.hpp>
+#include <renderer.hpp>
+
 
 TEST_CASE("try to open a picture", "[ppm picture]")
 {
-	PpmWriter ppm{{100}, {50}, "ppmfile"};
-	Pixel pixel{{100}, {50}};
+	Renderer renderer{{100}, {90}, "ppmfile2"};
+	Pixel pixel{{100}, {10}};
+	renderer.write(pixel);
+	renderer.render();
+	/*PpmWriter ppm{{100}, {50}, "ppmfile"};
+	Pixel pixel{{100}, {50}, {1,0,0}};
 	ppm.write(pixel);
-	ppm.save("ppmfile");
+	ppm.save("ppmfile");*/
 }
 
 TEST_CASE("aufgabe7_3", "[aufgabe7_3]")
