@@ -14,6 +14,7 @@ public:
 	Box(std::string const& name, Material const& material);
 	Box(glm::vec3 const& min, glm::vec3 const& max, 
 		std::string const& name, Material const& material);
+	Box(std::string const& name, glm::vec3 const& min, glm::vec3 const& max, Material const& material);
 	glm::vec3 getmin() const;
 	glm::vec3 getmax() const;
 	double area() const override;

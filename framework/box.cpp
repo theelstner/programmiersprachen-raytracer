@@ -38,6 +38,11 @@ Shape(name, material),
 min_{min},
 max_{max} {}
 
+Box::Box(std::string const& name, glm::vec3 const& min, glm::vec3 const& max, Material const& material) :
+Shape(name, material),
+min_{min},
+max_{max} {}
+
 
 glm::vec3 Box::getmin() const
 {
