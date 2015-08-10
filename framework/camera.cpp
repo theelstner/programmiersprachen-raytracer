@@ -3,12 +3,14 @@
 Camera::Camera() :
 name_{},
 position_{0, 0, 0},
+direction_{0, 0, -1}, // camera looks in direction of negative z-axis
 fov_x_{45}
 {}
 
 Camera::Camera(std::string const& name, double fov_x) :
 name_{name},
 position_{0, 0, 0},
+direction_{0, 0, -1},
 fov_x_{fov_x}
 {}
 
