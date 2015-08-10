@@ -29,7 +29,6 @@ void Renderer::render()
       } else {
         p.color = Color(1.0, 0.0, float(y)/width_);
       }
-
       write(p);
     }
   }
