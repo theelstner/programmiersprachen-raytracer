@@ -10,16 +10,42 @@
 #include <pixel.hpp>
 #include <renderer.hpp>
 
+TEST_CASE("tests algebra on glm::vec3", "[algebra on vec3]")
+{
+    glm::vec3 vec{1, 2, 3};
+    glm::vec3 vec1{-1, -2, -3};
+    glm::vec3 vec2{0, 0, 0};
+    glm::vec3 vec3{4, 5, 6};
+    glm::vec3 vec4{-3, 6, -3};
+    glm::vec3 vec5{5, 7, 9};
+    glm::vec3 vec6{5, 10, 15};
+    auto result = glm::length(vec);
+    auto result1 = -vec1;
+    auto result2 = glm::dot(vec, vec1);
+    auto result3 = glm::cross(vec, vec1);
+    auto result4 = glm::cross(vec, vec3);
+    auto result5 = vec + vec3;
+    auto result6 = 5.0f*vec;// ATTENTION to float!
+    REQUIRE(result == Approx(sqrt(14))); // length (magnitude) works
+    REQUIRE(result1 == vec); // == and -vec (negation) work
+    REQUIRE(result2 == Approx(-14)); // dotproduct works
+    REQUIRE(result3 == vec2); //crossproduct works
+    REQUIRE(result4 == vec4); //crossprod works
+    REQUIRE(result5 == vec5); //adding works
+    REQUIRE(result6 == vec6); //scalar multipication works ONLY WITH FLOAT!
+
+
+}
 
 TEST_CASE("try to open a picture", "[ppm picture]")
 {
 	Renderer renderer{{100}, {90}, "ppmfile2"};
-	Pixel pixel{{100}, {10}};
-	renderer.write(pixel);
+	Pixel pixel0{{100}, {10}};
+	renderer.write(pixel0);
 	renderer.render();
-	/*PpmWriter ppm{{100}, {50}, "ppmfile"};
-	Pixel pixel{{100}, {50}, {1,0,0}};
-	ppm.write(pixel);
+	/*PpmWriter ppm{{100}, {10}, "ppmfile"};
+	//Pixel pixel{{100}, {50}, {1,0,0}};
+	ppm.write(pixel0);
 	ppm.save("ppmfile");*/
 }
 
