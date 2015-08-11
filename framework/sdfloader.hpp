@@ -1,15 +1,16 @@
 #ifndef BUW_SDFLOADER_HPP
 #define BUW_SDFLOADER_HPP
-#include "scene.hpp"
+
 #include <string>
+#include <iostream>
+#include <iterator>
+#include <vector>
 #include <fstream>
 #include <sstream>
-#include <vector>
-#include <iterator>
-#include <iostream>
+#include <unordered_map>
 #include <utility>
+#include <material.hpp>
 
-
-Scene* loadSDF(std::string const& file);
+std::vector<Material> loadSDF(std::string const& file);
 
 #endif

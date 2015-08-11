@@ -1,29 +1,30 @@
 #ifndef BUW_MATERIAL_HPP
 #define BUW_MATERIAL_HPP
-#include <color.hpp>
+
+#include "color.hpp"
 #include <string>
 #include <iostream>
 
 class Material
 {
-public:
-	Material();
-	Material(std::string const& usrname);
-	Material(std::string const& usrname, Color const& usrka, Color const& usrkd, Color const& usrks, float const usrm);
-	std::string const& getname() const;
-	Color const& getka() const;
-	Color const& getkd() const;
-	Color const& getks() const;
-	float const getm() const;
-	Material const& getmaterial() const;
+  public:
+    Material(); // default constructor
+    Material(std::string const& name, Color const& ka,
+             Color const& kd, Color const& ks, float m);
+    std::string const& name() const;
+    Color const& ka() const;
+    Color const& kd() const;
+    Color const& ks() const;
+    float m() const;
 
-
-private:
-	std::string name;
-	Color ka;
-	Color kd;
-	Color ks;
-	float m;
+  private:
+    std::string name_;
+    Color ka_;
+    Color kd_;
+    Color ks_;
+    float m_;
 };
+
 std::ostream& operator<<(std::ostream& os, Material const& mat);
-#endif
+
+#endif // BUW_MATERIAL_HPP

@@ -1,53 +1,29 @@
 #include "material.hpp"
 
-Material::Material() :
-name{},
-ka{0, 0, 0},
-kd{0, 0, 0},
-ks{0, 0, 0},
-m{0} {} 
+Material::Material(): // default constructor
+  name_{},
+  ka_{0.0, 0.0, 0.0},
+  kd_{0.0, 0.0, 0.0},
+  ks_{0.0, 0.0, 0.0},
+  m_{1} {}
 
-Material::Material(std::string const& usrname) :
-name{usrname},
-ka{0, 0, 0},
-kd{0, 0, 0},
-ks{0, 0, 0},
-m{0} {}
+Material::Material(std::string const& name, Color const& ka,
+                   Color const& kd, Color const& ks, float m):
+  name_{name},
+  ka_{ka},
+  kd_{kd},
+  ks_{ks},
+  m_{m} {}
 
-Material::Material(std::string const& usrname, Color const& usrka, Color const& usrkd, Color const& usrks, float const usrm) :
-name{usrname},
-ka{usrka},
-kd{usrkd},
-ks{usrks},
-m{usrm} {}
+std::string const& Material::name() const {return name_;}
+Color const& Material::ka() const {return ka_;}
+Color const& Material::kd() const {return kd_;}
+Color const& Material::ks() const {return ks_;}
+float Material::m() const {return m_;}
 
-std::string const& Material::getname() const
+std::ostream& operator<<(std::ostream& os, Material const& mat)
 {
-    return name;
-}
-	
-Color const& Material::getka() const
-{
-	return ka;
-}
-
-Color const& Material::getkd() const
-{
-	return kd;
-}
-
-Color const& Material::getks() const
-{
-	return ks;
-}
-
-float const Material::getm() const
-{
-	return m;
-}
-
-std::ostream& operator<<(std::ostream& os, Material const& mat) // in die hpp
-{
-	os << "Name: " << mat.getname() << "\n" << "Color: " << mat.getka() << mat.getkd() << mat.getks() << "m: " << mat.getm();
-	return os;
+  os<<"Name: "<<mat.name()<<"\n"<<"ka: "<<mat.ka()<<"kd: "
+  <<mat.kd()<<"ks: "<<mat.ks()<<"m: "<<mat.m()<<"\n";
+  return os;
 }

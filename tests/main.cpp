@@ -1,209 +1,176 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
-#include "sphere.cpp"
-#include "box.cpp"
+#include "shape.hpp"
+#include "sphere.hpp"
+#include "box.hpp"
+#include "material.hpp"
+#include "sdfloader.hpp"
+#include <iostream>
 #include <glm/glm.hpp>
 #include <glm/gtx/intersect.hpp>
-#include <material.hpp>
-#include <sdfloader.hpp>
-#include <ppmwriter.hpp>
-#include <pixel.hpp>
-#include <renderer.hpp>
 
-TEST_CASE("tests algebra on glm::vec3", "[algebra on vec3]")
-{
-    glm::vec3 vec{1, 2, 3};
-    glm::vec3 vec1{-1, -2, -3};
-    glm::vec3 vec2{0, 0, 0};
-    glm::vec3 vec3{4, 5, 6};
-    glm::vec3 vec4{-3, 6, -3};
-    glm::vec3 vec5{5, 7, 9};
-    glm::vec3 vec6{5, 10, 15};
-    auto result = glm::length(vec);
-    auto result1 = -vec1;
-    auto result2 = glm::dot(vec, vec1);
-    auto result3 = glm::cross(vec, vec1);
-    auto result4 = glm::cross(vec, vec3);
-    auto result5 = vec + vec3;
-    auto result6 = 5.0f*vec;// ATTENTION to float!
-    REQUIRE(result == Approx(sqrt(14))); // length (magnitude) works
-    REQUIRE(result1 == vec); // == and -vec (negation) work
-    REQUIRE(result2 == Approx(-14)); // dotproduct works
-    REQUIRE(result3 == vec2); //crossproduct works
-    REQUIRE(result4 == vec4); //crossprod works
-    REQUIRE(result5 == vec5); //adding works
-    REQUIRE(result6 == vec6); //scalar multipication works ONLY WITH FLOAT!
-
-
-}
-
-TEST_CASE("try to open a picture", "[ppm picture]")
-{
-	Renderer renderer{{100}, {90}, "ppmfile2"};
-	Pixel pixel0{{100}, {10}};
-	renderer.write(pixel0);
-	renderer.render();
-	/*PpmWriter ppm{{100}, {10}, "ppmfile"};
-	//Pixel pixel{{100}, {50}, {1,0,0}};
-	ppm.write(pixel0);
-	ppm.save("ppmfile");*/
-}
-
-TEST_CASE("aufgabe7_3", "[aufgabe7_3]")
-{
-	float t = 1.0f;
-	Box b{};
-	//Ray r{{0.0, 0.0, 0.0}, {1.0, 1.0, 1.0}};
-	Ray r0{{0.5, 0.5, 0.5}, {1.0, 0.0, 0.0}}; //tests x-plane from inside b
-	Ray r1{{0.5, 0.5, 0.5}, {0.0, 1.0, 0.0}}; //tests y-plane ..
-	Ray r2{{0.5, 0.5, 0.5}, {0.0, 0.0, 1.0}}; //tests z-plane ..
-	Ray r_outside{{2.0, 2.0, 2.0}, {-1.0, -1.0, -1.0}}; //tests from outside the box
-	Ray r_miss{{2.0, 2.0, 2.0}, {1.0, 0.0, 0.0}}; //test should return false
-	bool test0 = b.intersect(r0, t);
-	bool test1 = b.intersect(r1, t);
-	bool test2 = b.intersect(r2, t);
-	bool test3 = b.intersect(r_outside, t);
-	bool test4 = b.intersect(r_miss, t);
-	REQUIRE(test0 == true);
-	REQUIRE(test1 == true);
-	REQUIRE(test2 == true);
-	REQUIRE(test3 == true);
-	REQUIRE(test4 == false);
-}
-
-TEST_CASE("aufgabe 7_5", "[materials]")
-{
-	auto scene = loadSDF("materials.sdf");
-	for (auto i : scene->materials) 
-	{
-      std::cout << i << std::endl;
-    }
-    delete scene;
-}
-
-TEST_CASE("aufgabe7_4", "[aufgabe7_4]")
-{
-	Material material{"TestMaterial", {1.0, 0.0, 0.0}, {1.0, 1.0, 0.0}, {0.0, 0.0, 0.0}, {1.0}};
-    std::cout << material << std::endl;
-}
 /*
-TEST_CASE("aufgabe8", "[aufgabe8]")
+TEST_CASE("default constructor of sphere", "[Sphere]")
 {
-	std::cout << "hier gehts los" << std::endl;
-
-	Color red(255, 0, 0);
-	glm::vec3 position(0.0);
-
-	Sphere* s1 = new Sphere(position, 1.2, "sphere0", red);
-	Shape* s2 = new Sphere(position, 1.2, "sphere1", red);
-
-	s1->print(std::cout);
-	s2->print(std::cout);
-
-	delete s1;
-	delete s2;
-
-	std::cout << "hier endets" << std::endl;
+  Sphere s1{};
+  glm::vec3 cen{0, 0, 0};
+  REQUIRE(s1.center() == cen);
+  REQUIRE(s1.radius() == Approx(1.0));
 }
 
-TEST_CASE("aufgabe61_intersectSphere", "[intersectSphere]")
+TEST_CASE("copy constructor of sphere", "[Sphere]")
 {
-	Ray r1{{0.0, 0.0, 0.0}, {0.0, 1.0, 2.0}};
-	Sphere s1{};
-	bool intersection = s1.intersect(r1);
-	REQUIRE(intersection == true);
-}*/
-
-TEST_CASE("aufgabe6_intersectRaySphere", "[intersect]")
-{
-	//Ray
-	glm::vec3 ray_origin(0.0, 0.0, 0.0);
-	// ray direction has to be normalized!
-	// you can use:
-	// v= glm::normalize(some_vector)
-	glm::vec3 ray_direction(0.0, 0.0, 1.0);
-
-	//Sphere
-	glm::vec3 sphere_center(0.0, 0.0, 5.0);
-	float sphere_radius(1.0);
-
-	float distance(0.0);
-	auto result = glm::intersectRaySphere(ray_origin, ray_direction, sphere_center, sphere_radius, distance);
-	REQUIRE(distance == Approx(4.0f));
+  // zu übergeben: center, radius, name, color
+  Sphere s1{glm::vec3{1, 2, 3}, 3, "Sphere1", Color{1, 1, 1}};
+  Sphere s2(s1);
+  glm::vec3 cen{1, 2, 3};
+  Color c{1, 1, 1};
+  REQUIRE(s2.center() == cen);
+  REQUIRE(s2.radius() == Approx(3));
+  REQUIRE(s2.name() == "Sphere1");
+  REQUIRE(s2.color().r == c.r);
+  REQUIRE(s2.color().g == c.g);
+  REQUIRE(s2.color().b == c.b);
 }
 
-TEST_CASE("aufgabe51", "[5_aufgabe]")
+TEST_CASE("user-defined constructor of sphere", "[Sphere]")
 {
-    Box bp(glm::vec3{0.0, 0.0, 1.0}, glm::vec3{2.0, 3.0, 4.0}, 
-		"Testbox", Material{});
-    std::cout << bp << std::endl;
+  Sphere s1{{1, 1, 1}, 5};
+  glm::vec3 cen{1, 1, 1};
+  REQUIRE(s1.center() == cen);
+  REQUIRE(s1.radius() == Approx(5.0));
 }
 
-TEST_CASE("aufgabe5", "[5_aufgabe]")
+TEST_CASE("calculate area and volume of sphere", "[area, volume]")
 {
-	Sphere sp{glm::vec3{0.0, 0.0, 0.0}, {1.0}, "Testsphere", Material{}};
-	std::cout << sp << std::endl;
+  Sphere s1{};
+  REQUIRE(s1.area() == Approx(12.5664));
+  REQUIRE(s1.volume() == Approx(4.18879));
 }
 
-/*TEST_CASE("aufgabe4", "[4_print]")
+TEST_CASE("default constructor of box", "[Box]")
 {
-	Sphere sp{"TaskSphere", Color{0.0, 1.0, 1.0}};
-	std::cout << sp << std::endl;
-}*/
-
-TEST_CASE("aufgabe31", "[3_konstruktor_box]")
-{
-	Box b1{glm::vec3{0.0, 0.0, 0.0}, glm::vec3{2.0, 2.0, 2.0}, "TestBox", Material{}};
-	glm::vec3 min{0.0, 0.0, 0.0};
-	glm::vec3 max{2.0, 2.0, 2.0};
-	Material mate{};
-	std::string name = "TestBox";
-	REQUIRE(b1.getname() == name);
-	REQUIRE(b1.getmin() == min);
-	REQUIRE(b1.getmax() ==max);
+  Box b1{};
+  glm::vec3 min{0, 0, 0};
+  glm::vec3 max{1, 1, 1};
+  REQUIRE(b1.min() == min);
+  REQUIRE(b1.max() == max);
 }
 
-TEST_CASE("aufgabe3", "[3_konstruktor_sphere]")
+TEST_CASE("copy constructor of box", "[Box]")
 {
-	Sphere s1{glm::vec3{0.0, 1.0, 0.0}, {2.0}, "TestSphere", Material{}};
-	glm::vec3 center{0.0, 1.0, 0.0};
-	double radius = 2.0;
-	std::string name = "TestSphere";
-	REQUIRE(s1.getname() == name);
-	REQUIRE(s1.getradius() == radius);
-	REQUIRE(s1.getcenter() == center);
+  // zu übergeben: min, max, name, color
+  Box b1{glm::vec3{1, 2, 3}, glm::vec3{2, 3, 4},
+        "Box1", Color{1, 1, 1}};
+  Box b2(b1);
+  glm::vec3 min{1, 2, 3};
+  glm::vec3 max{2, 3, 4};
+  Color c{1, 1, 1};
+  REQUIRE(b2.min() == min);
+  REQUIRE(b2.max() == max);
+  REQUIRE(b2.name() == "Box1");
+  REQUIRE(b2.color().r == c.r);
+  REQUIRE(b2.color().g == c.g);
+  REQUIRE(b2.color().b == c.b);
 }
 
-TEST_CASE("aufgabe24", "[2_min_max_box]")
+TEST_CASE("user-defined constructor of box", "[Box]")
 {
-	Box b{glm::vec3{0.0, 3.0, 4.0}, glm::vec3{3.0, 5.0, 6.0}};
-	glm::vec3 minimum{0.0, 3.0, 4.0};
-	glm::vec3 maximum{3.0, 5.0, 6.0};
-	REQUIRE(b.getmin() == minimum);
-	REQUIRE(b.getmax() == maximum);
+  Box b1{glm::vec3{2, 2, 3}, glm::vec3{1, 2, 4}};
+  glm::vec3 min{2, 2, 3};
+  glm::vec3 max{1, 2, 4};
+  REQUIRE(b1.min() == min);
+  REQUIRE(b1.max() == max);
 }
 
-TEST_CASE("aufgabe23", "[2_area_volume_box]")
+TEST_CASE("print name and color of Sphere", "[print]")
 {
-	Box b{};
-	REQUIRE(b.area() == Approx(6.0).epsilon(0.001));
-	REQUIRE(b.volume() == Approx(1.0).epsilon(0.001));
+  Sphere s1{"Sphere1", Color{1, 1, 1}};
+  std::cout<<"Name und Color der Sphere: "<<s1<<"\n";
 }
 
-TEST_CASE("aufgabe22", "[2_center_radius_sphere]")
+TEST_CASE("print member variables of Box", "[print]")
 {
-	Sphere s{{0.0, 1.0, 2.0}, {3.0}};
-	glm::vec3 v3{0.0, 1.0, 2.0};
-	REQUIRE(s.getcenter() == v3);
-	REQUIRE(s.getradius() == 3.0);
+  Box b1{glm::vec3{1, 2, 3}, glm::vec3{2, 3, 4}, "Box1", Color{1, 0, 1}};
+  std::cout<<"Member Variablen der Box: "<<b1<<"\n";
 }
 
-TEST_CASE("aufgabe2", "[2_area_volume_sphere]")
+TEST_CASE("intersectRaySphere", "[intersect]")
 {
-	Sphere s{};
-	REQUIRE(s.area() == Approx(12.56).epsilon(0.001));
-	REQUIRE(s.volume() == Approx(4.19).epsilon(0.001));
+  // Ray
+  glm::vec3 ray_origin(0.0, 0.0, 0.0);
+  // ray direction has to be normalized!
+  glm::vec3 ray_direction(0.0, 0.0, 1.0);
+
+  // Sphere
+  glm::vec3 sphere_center(0.0, 0.0, 5.0);
+  float sphere_radius(1.0);
+
+  float distance(0.0);
+  auto result = glm::intersectRaySphere(ray_origin,
+    ray_direction, sphere_center, sphere_radius,
+    distance);
+  REQUIRE(distance == Approx(4.0f));
 }
+
+TEST_CASE("intersectRaySphere II", "[intersectRaySphere]")
+{
+  Ray r1{{0.0,0.0,0.0}, {0.0,0.0,1.0}};
+  Sphere s1{glm::vec3{0.0,0.0,5.0}, 1.0};
+  REQUIRE(s1.intersect(r1) == true);
+}
+
+TEST_CASE("static and dynamic variables", "[static and dynamic]")
+{
+  std::cout<<std::endl<<"Hier gehts los!"<<std::endl<<std::endl;
+  Color red(255, 0, 0);
+  glm::vec3 position(0.0);
+  std::shared_ptr<Sphere> s1 =
+  std::make_shared<Sphere>(position, 1.2,"sphere0", red);
+  std::shared_ptr<Shape> s2 =
+  std::make_shared<Sphere>(position, 1.2, "sphere1", red);
+  s1-> print(std::cout);
+  s2-> print(std::cout);
+}
+
+TEST_CASE("destructor", "[delete]")
+{
+  std::cout<<std::endl<<"Hier gehts wieder los!"<<std::endl<<std::endl;
+  Color red(255, 0, 0);
+  glm::vec3 position(0.0);
+
+  Sphere* s1 = new Sphere(position, 1.2, "sphere0", red);
+  Shape* s2 = new Sphere(position, 1.2, "sphere1", red);
+
+  s1->print(std::cout);
+  s2->print(std::cout);
+
+  delete s1;
+  delete s2;
+}
+*/
+
+TEST_CASE("streamoperator class Material", "[operator<<]")
+{
+  Material mat1{"Material_1", {1,1,1}, {0,0,0}, {1,0,1}, 1.5};
+  std::cout<<mat1<<std::endl;
+}
+
+TEST_CASE("intersect Ray and Box", "[intersect]")
+{
+  // Box im Ursprung, Seitenlängen = 1
+  Box b1{glm::vec3{1, 0, 0}, glm::vec3{0, 1, 1}};
+  // Ray geht von min aus durch max
+  Ray r1{{1, 0, 0}, {-1, 1, 1}};
+  float t = 0;
+  REQUIRE(b1.intersect(r1, t) == true);
+}
+
+TEST_CASE("read a file", "[file]")
+{
+  loadSDF("read_mat.sdf");
+}
+
 
 int main(int argc, char *argv[])
 {
